@@ -2,6 +2,9 @@ import streamlit as st
 import random
 import io
 
+# ---------------------------
+# Streamlit Page Config
+# ---------------------------
 st.set_page_config(page_title="Daily Momentum Agent", page_icon="⚡", layout="wide")
 
 # 🎨 Custom Styling
@@ -29,10 +32,15 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
+# ---------------------------
+# Title
+# ---------------------------
 st.title("⚡ Daily Momentum Picks")
 st.write("Click *Shuffle* to refresh your energy boosters anytime, and *Save/Share My Picks* to keep them!")
 
-# Pools of options
+# ---------------------------
+# Pools of Options
+# ---------------------------
 motivations_pool = [
     "Believe in progress, not perfection.",
     "Consistency beats intensity — small steps daily build greatness.",
@@ -81,15 +89,21 @@ habits_pool = [
     "📖 Plan tomorrow’s top 3 tasks each evening"
 ]
 
-# Function to pick 3 random items
+# ---------------------------
+# Helper Function
+# ---------------------------
 def pick_three(pool):
     return random.sample(pool, 3)
 
-# Shuffle button
+# ---------------------------
+# Shuffle Button
+# ---------------------------
 if st.button("🔄 Shuffle Picks"):
     st.session_state["shuffle"] = True
 
-# Generate picks
+# ---------------------------
+# Generate Picks
+# ---------------------------
 picks = {
     "💡 Motivations": pick_three(motivations_pool),
     "🎵 Songs": pick_three(songs_pool),
@@ -99,7 +113,9 @@ picks = {
     "📖 Habits": pick_three(habits_pool),
 }
 
-# Display sections with icons
+# ---------------------------
+# Display Sections
+# ---------------------------
 output = io.StringIO()
 for category, items in picks.items():
     st.markdown(f"<div class='category-box'><h2>{category}</h2>", unsafe_allow_html=True)
